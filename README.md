@@ -30,7 +30,10 @@ web interface passwod change
 
 ```
 vim pihole/.env
+  WEBPASSWORD=<password>
+
 vim wg-easy/.env
+  PASSWORD=<password>
 ```
 
 5. cloudflare settings
