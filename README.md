@@ -29,11 +29,8 @@ git clone https://github.com/minpeter/homelab_infra.git
 web interface passwod change
 
 ```
-vim pihole/.env
-  WEBPASSWORD=<password>
-
-vim wg-easy/.env
-  PASSWORD=<password>
+echo "WEBPASSWORD=<password>" > pihole/.env
+echo "PASSWORD=<password>" > wg-easy/.env
 ```
 
 5. cloudflare settings
