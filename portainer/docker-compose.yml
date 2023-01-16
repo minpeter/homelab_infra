@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+    restart: unless-stopped
+    labels:
+      - traefik.enable=true
+      - traefik.http.services.portainer.loadbalancer.server.port=9000
+      - traefik.http.routers.portainer.rule=Host(`docker.minpeter.cf`)
+      - traefik.http.routers.portainer.entrypoints=websecure
+      - traefik.http.routers.portainer.tls.certresolver=myresolver
+    networks:
+      - traefik
+
+networks:
+  traefik:
+    external: true
+
+volumes:
+  portainer_data:
+    driver: local
