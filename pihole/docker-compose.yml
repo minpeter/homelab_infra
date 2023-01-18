@@ -18,10 +18,8 @@ services:
     restart: unless-stopped
     labels:
       - traefik.enable=true
-      - traefik.http.middlewares.admin-add-prefix.addprefix.prefix=/admin
       - traefik.http.services.pihole.loadbalancer.server.port=80
-      - traefik.http.routers.pihole.middlewares=admin-add-prefix@docker
-      - traefik.http.routers.pihole.rule=Host(`dns.minpeter.cf`, `pihole.minpeter.cf`)
+      - traefik.http.routers.pihole.rule=Host(`dns.minpeter.cf`) && Path(`/admin`)
       - traefik.http.routers.pihole.entrypoints=websecure
       - traefik.http.routers.pihole.tls.certresolver=myresolver
     networks:
@@ -33,6 +31,4 @@ networks:
 
 volumes:
   etc-pihole:
-    driver: local
   etc-dnsmasq.d:
-    driver: local
