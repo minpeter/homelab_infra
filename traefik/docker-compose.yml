@@ -27,8 +27,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - traefik-letsencrypt:/letsencrypt
-    networks:
-      - traefik
+    networks: [traefik]
 
   whoami:
     image: traefik/whoami
@@ -39,8 +38,7 @@ services:
       - traefik.http.routers.whoami.rule=Host(`whoami.minpeter.cf`)
       - traefik.http.routers.whoami.entrypoints=websecure
       - traefik.http.routers.whoami.tls.certresolver=myresolver
-    networks:
-      - traefik
+    networks: [traefik]
 
 networks:
   traefik:
@@ -48,4 +46,3 @@ networks:
       
 volumes:
   traefik-letsencrypt:
-    driver: local
