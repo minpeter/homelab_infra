@@ -5,7 +5,9 @@ services:
     container_name: traefik
     restart: unless-stopped
     command:
-      - --api.insecure=true
+      - --accesslog=true
+      - --api.insecure=false
+      - --api.dashboard=true
       
       - --providers.docker=true
       - --providers.docker.network=traefik
@@ -15,17 +17,27 @@ services:
       - --entrypoints.web.http.redirections.entryPoint.to=websecure
       - --entrypoints.web.http.redirections.entryPoint.scheme=https
       - --entrypoints.websecure.address=:443
+      - --entryPoints.websecure.forwardedHeaders.insecure
+      #TODO: upgrade insecure to trustedIPs
 
       - --certificatesresolvers.myresolver.acme.httpchallenge=true
       - --certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web
       - --certificatesresolvers.myresolver.acme.email=kali2005611@gmail.com
       - --certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.traefik.rule=Host(`traefik.minpeter.cf`) && PathPrefix(`/api`, `/dashboard`)
+      - traefik.http.routers.traefik.entrypoints=websecure
+      - traefik.http.routers.traefik.tls.certresolver=myresolver
+      - traefik.http.routers.traefik.service=api@internal
+      - traefik.http.routers.traefik.middlewares=traefik-auth
+      - traefik.http.middlewares.traefik-auth.basicauth.usersfile=/usersfile
     ports:
       - 80:80
       - 443:443
-      - 8080:8080
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./usersfile:/usersfile
       - traefik-letsencrypt:/letsencrypt
     networks: [traefik]
 
@@ -38,6 +50,7 @@ services:
       - traefik.http.routers.whoami.rule=Host(`whoami.minpeter.cf`)
       - traefik.http.routers.whoami.entrypoints=websecure
       - traefik.http.routers.whoami.tls.certresolver=myresolver
+      - traefik.http.routers.whoami.middlewares=traefik-auth
     networks: [traefik]
 
 networks:

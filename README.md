@@ -33,6 +33,11 @@ echo "WEBPASSWORD=<password>" > pihole/.env
 echo "PASSWORD=<password>" > wg-easy/.env
 ```
 
+set traefik basic auth username and password
+```
+echo "<username>:<htpassword>" >> traefik/usersfile
+```
+
 5. cloudflare settings
 
 ```
