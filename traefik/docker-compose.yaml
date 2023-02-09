@@ -1,0 +1,42 @@
+version: '3.8'
+services:
+  traefik:
+    image: traefik:v2.9
+    container_name: traefik
+    restart: unless-stopped
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.traefik.rule=Host(`traefik.minpeter.cf`) && PathPrefix(`/api`, `/dashboard`)
+      - traefik.http.routers.traefik.entrypoints=websecure
+      - traefik.http.routers.traefik.tls.certresolver=myresolver
+      - traefik.http.routers.traefik.service=api@internal
+      - traefik.http.routers.traefik.middlewares=traefik-auth
+      - traefik.http.middlewares.traefik-auth.basicauth.usersfile=/usersfile
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik.yaml:/etc/traefik/traefik.yaml
+      - ./usersfile:/usersfile
+      - traefik-letsencrypt:/letsencrypt
+    networks: [traefik]
+
+  whoami:
+    image: traefik/whoami
+    restart: unless-stopped
+    container_name: whoami-service
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.whoami.rule=Host(`whoami.minpeter.cf`)
+      - traefik.http.routers.whoami.entrypoints=websecure
+      - traefik.http.routers.whoami.tls.certresolver=myresolver
+      - traefik.http.routers.whoami.middlewares=traefik-auth
+    networks: [traefik]
+
+networks:
+  traefik:
+    external: true
+      
+volumes:
+  traefik-letsencrypt:
