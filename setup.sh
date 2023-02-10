@@ -9,3 +9,5 @@ docker compose -f portainer/docker-compose.yml up -d
 
 docker compose -f wg-easy/docker-compose.yml up -d
 docker compose -f kuma/docker-compose.yml up -d
+
+docker compose -f watchtower/docker-compose.yml up -d
