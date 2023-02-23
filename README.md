@@ -47,8 +47,7 @@ A record: domain.com -> <server_ip>
 SSL -> Full (strict)
 
 Page Rules
-  - *domain.com/.well-known/acme-challenge/* -> SSL, off
-  - *domain.com/* -> Always Use HTTPS
+ *domain.com/.well-known/acme-challenge/* -> SSL, off
 ```
 
 6. run the setup script
