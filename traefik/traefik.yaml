@@ -8,6 +8,9 @@ providers:
   docker:
     network: traefik
     exposedByDefault: false
+  file:
+    directory: /external_config
+    watch: true
 
 entryPoints:
   web:
