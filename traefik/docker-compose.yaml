@@ -18,8 +18,11 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./traefik.yaml:/etc/traefik/traefik.yaml
+      - ./external_services:/external_services
       - ./usersfile:/usersfile
       - traefik-letsencrypt:/letsencrypt
+    extra_hosts:
+      - host.docker.internal:host-gateway
     networks: [traefik]
 
   whoami:

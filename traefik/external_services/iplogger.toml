@@ -1,0 +1,9 @@
+[http.routers]
+  [http.routers.iplogger]
+    entryPoints = ["websecure"]
+    rule = "Host(`ip.minpeter.cf`)"
+    service = "iplogger-ext-srv"
+    [http.routers.iplogger.tls]
+      certResolver = "myresolver"
+[[http.services.iplogger-ext-srv.loadBalancer.servers]]
+  url = "http://host.docker.internal:10000"

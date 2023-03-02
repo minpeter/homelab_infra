@@ -24,3 +24,5 @@ $ docker compose down
 [[http.services.[service]-ext-srv.loadBalancer.servers]]
   url = "http://[service]:[port]"
 ```
+
+// If the service is running on the same server, connect to host.docker.internal:[port]

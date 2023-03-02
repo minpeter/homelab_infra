@@ -9,7 +9,7 @@ providers:
     network: traefik
     exposedByDefault: false
   file:
-    directory: /external_config
+    directory: /external_services
     watch: true
 
 entryPoints:
