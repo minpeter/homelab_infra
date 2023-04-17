@@ -34,6 +34,7 @@ echo "PASSWORD=<password>" > wg-easy/.env
 ```
 
 set traefik basic auth username and password
+
 ```
 echo "<username>:<htpassword>" >> traefik/usersfile
 ```
@@ -47,7 +48,8 @@ A record: domain.com -> <server_ip>
 SSL -> Full (strict)
 
 Page Rules
- *domain.com/.well-known/acme-challenge/* -> SSL, off
+  - *domain.com/.well-known/acme-challenge/* -> SSL, off
+  - *domain.com/* -> Always Use HTTPS
 ```
 
 6. run the setup script
