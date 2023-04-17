@@ -4,7 +4,7 @@ services:
     image: weejewel/wg-easy
     container_name: wg-easy
     environment:
-      - WG_HOST=1.243.186.223
+      - WG_HOST=114.201.7.126
     env_file:
       - .env
     volumes:
