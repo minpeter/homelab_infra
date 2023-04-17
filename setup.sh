@@ -11,3 +11,4 @@ docker compose -f wg-easy/docker-compose.yml up -d
 docker compose -f kuma/docker-compose.yml up -d
 
 docker compose -f watchtower/docker-compose.yml up -d
+docker compose -f linktree/docker-compose.yml up -d
