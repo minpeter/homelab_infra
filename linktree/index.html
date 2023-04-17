@@ -13,6 +13,7 @@
 
     a {
       text-decoration: none;
+      color: #5758c2;
     }
 
     div {
@@ -49,6 +50,34 @@
         display: none;
       }
     }
+
+    /* Dark mode styles */
+    body.dark-mode {
+      background-color: #222222;
+      color: #dddddd;
+    }
+
+    a.dark-mode {
+      color: #dddddd;
+    }
+
+
+    footer.dark-mode {
+      color: #cccccc;
+      background-color: #222222;
+    }
+
+    footer.dark-mode a {
+      color: #cccccc;
+    }
+
+    a.dark-mode:visited {
+      color: #dddddd;
+    }
+
+    footer.dark-mode a:hover {
+      color: #dddddd;
+    }
   </style>
 </head>
 
@@ -74,3 +103,10 @@
 </footer>
 
 </html>
+
+<script>
+  // auto system dark mode
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.body.classList.add('dark-mode');
+  }
+</script>
