@@ -8,9 +8,7 @@
     body {
       display: flex;
       height: 90%;
-      font-size: 16px;
-      line-height: 26px;
-      letter-spacing: 0.7px;
+      font-size: 1.5rem;
     }
 
     a {
@@ -19,6 +17,37 @@
 
     div {
       margin: auto;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-family: monospace;
+      letter-spacing: 0.7px;
+      color: #cccccc;
+
+    }
+
+    footer a {
+      color: #cccccc;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #444444;
+    }
+
+    @media screen and (max-height: 400px) {
+      footer a {
+        display: none;
+      }
     }
   </style>
 </head>
@@ -36,6 +65,12 @@
     <a href="https://ip.minpeter.cf" title="Check Your Public IP Service">ipLogger</a> <br>
 
   </code></div>
+
 </body>
+
+<footer>
+  <a href="https://github.com/minpeter/homelab_infra/tree/main/linktree">github.com/minpeter/homelab_infra -
+    linktree</a>
+</footer>
 
 </html>
