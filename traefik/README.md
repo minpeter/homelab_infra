@@ -17,7 +17,7 @@ $ docker compose down
 [http.routers]
   [http.routers.[service]]
     entryPoints = ["websecure"]
-    rule = "Host(`[service].minpeter.cf`)"
+    rule = "Host(`[service].minpeter.tech`)"
     service = "[service]-ext-srv"
     [http.routers.[service].tls]
       certResolver = "myresolver"

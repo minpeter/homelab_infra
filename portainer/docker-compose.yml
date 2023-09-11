@@ -10,7 +10,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.services.portainer.loadbalancer.server.port=9000
-      - traefik.http.routers.portainer.rule=Host(`docker.minpeter.cf`)
+      - traefik.http.routers.portainer.rule=Host(`docker.minpeter.tech`)
       - traefik.http.routers.portainer.entrypoints=websecure
       - traefik.http.routers.portainer.tls.certresolver=myresolver
     networks:

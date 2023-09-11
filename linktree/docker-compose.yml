@@ -6,7 +6,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.services.linktree.loadbalancer.server.port=80
-      - traefik.http.routers.linktree.rule=Host(`minpeter.cf`)
+      - traefik.http.routers.linktree.rule=Host(`minpeter.tech`, `minpeter.tech`)
       - traefik.http.routers.linktree.entrypoints=websecure
       - traefik.http.routers.linktree.tls.certresolver=myresolver
     networks:

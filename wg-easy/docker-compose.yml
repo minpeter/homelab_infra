@@ -21,7 +21,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.services.wg-easy.loadbalancer.server.port=51821
-      - traefik.http.routers.wg-easy.rule=Host(`wg.minpeter.cf`, `vpn.minpeter.cf`)
+      - traefik.http.routers.wg-easy.rule=Host(`wg.minpeter.tech`, `vpn.minpeter.tech`)
       - traefik.http.routers.wg-easy.entrypoints=websecure
       - traefik.http.routers.wg-easy.tls.certresolver=myresolver
     networks:

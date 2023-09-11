@@ -6,7 +6,7 @@ services:
     restart: unless-stopped
     labels:
       - traefik.enable=true
-      - traefik.http.routers.traefik.rule=Host(`traefik.minpeter.cf`) && PathPrefix(`/api`, `/dashboard`)
+      - traefik.http.routers.traefik.rule=Host(`traefik.minpeter.tech`) && PathPrefix(`/api`, `/dashboard`)
       - traefik.http.routers.traefik.entrypoints=websecure
       - traefik.http.routers.traefik.tls.certresolver=myresolver
       - traefik.http.routers.traefik.service=api@internal
@@ -31,7 +31,7 @@ services:
     container_name: whoami-service
     labels:
       - traefik.enable=true
-      - traefik.http.routers.whoami.rule=Host(`whoami.minpeter.cf`)
+      - traefik.http.routers.whoami.rule=Host(`whoami.minpeter.tech`)
       - traefik.http.routers.whoami.entrypoints=websecure
       - traefik.http.routers.whoami.tls.certresolver=myresolver
       - traefik.http.routers.whoami.middlewares=traefik-auth
