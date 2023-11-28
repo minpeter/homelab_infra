@@ -1,9 +1,0 @@
-[http.routers]
-  [http.routers.websocket-test]
-    entryPoints = ["websecure"]
-    rule = "Host(`ws.minpeter.tech`)"
-    service = "websocket-test-ext-srv"
-    [http.routers.websocket-test.tls]
-      certResolver = "myresolver"
-[[http.services.websocket-test-ext-srv.loadBalancer.servers]]
-  url = "http://host.docker.internal:10001"

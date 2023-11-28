@@ -1,7 +1,7 @@
 [http.routers]
   [http.routers.iplogger]
     entryPoints = ["websecure"]
-    rule = "Host(`ip.minpeter.tech`, `ip.minpeter.tech`)"
+    rule = "Host(`ip.minpeter.tech`, `ip.tmpf.me`)"
     service = "iplogger-ext-srv"
     [http.routers.iplogger.tls]
       certResolver = "myresolver"

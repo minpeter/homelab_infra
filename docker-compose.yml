@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   traefik:
-    image: traefik:v2.9
+    image: traefik
     container_name: traefik
     restart: unless-stopped
     labels:
@@ -25,17 +25,32 @@ services:
       - host.docker.internal:host-gateway
     networks: [traefik]
 
-  whoami:
-    image: traefik/whoami
+  dockge:
+    image: louislam/dockge
+    container_name: dockge
     restart: unless-stopped
-    container_name: whoami-service
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - dockge:/app/data
+      - ./stacks:/stacks
+    environment:
+      # Tell Dockge where is your stacks directory
+      - DOCKGE_STACKS_DIR=/stacks
     labels:
       - traefik.enable=true
-      - traefik.http.routers.whoami.rule=Host(`whoami.minpeter.tech`)
-      - traefik.http.routers.whoami.entrypoints=websecure
-      - traefik.http.routers.whoami.tls.certresolver=myresolver
-      - traefik.http.routers.whoami.middlewares=traefik-auth
+      - traefik.http.services.dockge.loadbalancer.server.port=5001
+      - traefik.http.routers.dockge.entrypoints=websecure
+      - traefik.http.routers.dockge.tls.certresolver=myresolver
+      - traefik.http.routers.dockge.rule=Host(`dockge.minpeter.tech`)
     networks: [traefik]
+
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+    command: --interval 30
 
 networks:
   traefik:
@@ -43,3 +58,4 @@ networks:
       
 volumes:
   traefik-letsencrypt:
+  dockge:

@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  iplogger:
+    container_name: ipLogger
+    image: minpeter/iplogger
+    build: .
+    ports: ["10000:10000"]
+    restart: always
+    volumes:
+      - iplogger-log:/log
+
+volumes:
+  iplogger-log:

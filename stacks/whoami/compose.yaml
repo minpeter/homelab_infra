@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  whoami:
+    image: traefik/whoami
+    restart: unless-stopped
+    container_name: whoami
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.whoami.rule=Host(`whoami.minpeter.tech`)
+      - traefik.http.routers.whoami.entrypoints=websecure
+      - traefik.http.routers.whoami.tls.certresolver=myresolver
+      - traefik.http.routers.whoami.middlewares=traefik-auth
+    networks:
+      - traefik
+networks:
+  traefik:
+    external: true

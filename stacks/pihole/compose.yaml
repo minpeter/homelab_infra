@@ -8,8 +8,6 @@ services:
       - "53:53/udp"
     environment:
       TZ: 'Asia/Seoul'
-    env_file:
-      - .env
     volumes:
       - etc-pihole:/etc/pihole
       - etc-dnsmasq.d:/etc/dnsmasq.d

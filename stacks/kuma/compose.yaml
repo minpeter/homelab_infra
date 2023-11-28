@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:latest
+    container_name: uptime-kuma
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - uptime-kuma:/app/data
+    labels:
+      - traefik.enable=true
+      - traefik.http.services.uptime-kuma.loadbalancer.server.port=3001
+      - traefik.http.routers.uptime-kuma.entrypoints=websecure
+      - traefik.http.routers.uptime-kuma.tls.certresolver=myresolver
+      - traefik.http.routers.uptime-kuma.rule=Host(`uptime.minpeter.tech`)
+    networks:
+      - traefik
+networks:
+  traefik:
+    external: true
+
+volumes:
+  uptime-kuma:
