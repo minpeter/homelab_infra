@@ -8,4 +8,4 @@ tcp:
     tcp-service:
       loadBalancer:
         servers:
-          - address: "host.docker.internal:5555"  # Replace with your TCP server address
+          - address: "host.docker.internal:5555" # Replace with your TCP server address
