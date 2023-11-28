@@ -4,11 +4,19 @@ services:
   iplogger:
     container_name: ipLogger
     image: minpeter/iplogger
-    build: .
-    ports: ["10000:10000"]
-    restart: always
+    restart: unless-stopped
     volumes:
       - iplogger-log:/log
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.iplogger.rule=Host(`ip.minpeter.tech`)
+      - traefik.http.routers.iplogger.entrypoints=websecure
+      - traefik.http.routers.iplogger.tls.certresolver=myresolver
+    networks:
+      - traefik
+networks:
+  traefik:
+    external: true
 
 volumes:
   iplogger-log:
