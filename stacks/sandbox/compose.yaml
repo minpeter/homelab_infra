@@ -1,0 +1,7 @@
+version: "3.3"
+services:
+  sandbox:
+    ports:
+      - 5556:1337
+    image: minpeter/sandbox
+networks: {}

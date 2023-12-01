@@ -1,0 +1,7 @@
+version: "3.3"
+services:
+  mathematician-in-wonderland:
+    ports:
+      - 5555:5555
+    image: minpeter/mathematician-in-wonderland
+networks: {}
