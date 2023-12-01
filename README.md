@@ -55,7 +55,8 @@ Page Rules
 
 ```sh
 cd homelab_infra
-./setup.sh
+
+docker compose up -d
 ```
 
 7. check server status

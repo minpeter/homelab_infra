@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 services:
   traefik:
     image: traefik
@@ -23,7 +23,6 @@ services:
       - traefik-letsencrypt:/letsencrypt
     extra_hosts:
       - host.docker.internal:host-gateway
-    networks: [traefik]
 
   dockge:
     image: louislam/dockge
@@ -42,7 +41,6 @@ services:
       - traefik.http.routers.dockge.entrypoints=websecure
       - traefik.http.routers.dockge.tls.certresolver=myresolver
       - traefik.http.routers.dockge.rule=Host(`dockge.minpeter.tech`)
-    networks: [traefik]
 
   watchtower:
     image: containrrr/watchtower
@@ -53,9 +51,9 @@ services:
     command: --interval 30
 
 networks:
-  traefik:
-    external: true
-      
+  default:
+    name: traefik
+
 volumes:
   traefik-letsencrypt:
   dockge:
