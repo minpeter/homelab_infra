@@ -11,13 +11,11 @@ services:
       - traefik.enable=true
       - traefik.http.services.uptime-kuma.loadbalancer.server.port=3001
       - traefik.http.routers.uptime-kuma.entrypoints=websecure
-      - traefik.http.routers.uptime-kuma.tls.certresolver=myresolver
       - traefik.http.routers.uptime-kuma.rule=Host(`uptime.minpeter.tech`)
     networks:
       - traefik
 networks:
   traefik:
     external: true
-
 volumes:
-  uptime-kuma:
+  uptime-kuma: null

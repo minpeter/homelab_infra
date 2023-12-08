@@ -2,14 +2,12 @@ version: "3.8"
 services:
   dklodd:
     image: minpeter/dklodd:latest
-    container_name: dklodd
+    container_name: dklodd-test
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     labels:
       - traefik.enable=true
-      - traefik.http.routers.sandbox-generator.entrypoints=websecure
-      - traefik.http.routers.sandbox-generator.tls.certresolver=myresolver
       - traefik.http.routers.sandbox-generator.rule=Host(`dklodd.minpeter.tech`)
     networks:
       - traefik

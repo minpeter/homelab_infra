@@ -22,6 +22,14 @@ entryPoints:
           scheme: https
   websecure:
     address: :443
+    http:
+      tls:
+        certResolver: letsencrypt
+        domains:
+          - main: minpeter.tech
+            sans: ["*.minpeter.tech", "*.dklodd.minpeter.tech"]
+          - main: tmpf.me
+            sans: ["*.tmpf.me"]
     forwardedHeaders:
       trustedIPs:
         - 173.245.48.0/20
@@ -48,9 +56,10 @@ entryPoints:
         - 2c0f:f248::/32
 
 certificatesResolvers:
-  myresolver:
+  letsencrypt:
     acme:
       email: kali2005611@gmail.com
       storage: /letsencrypt/acme.json
-      httpChallenge:
-        entryPoint: web
+      dnsChallenge:
+        provider: cloudflare
+        delayBeforeCheck: 60

@@ -8,18 +8,18 @@ services:
       - traefik.enable=true
       - traefik.http.routers.traefik.rule=Host(`traefik.minpeter.tech`) && PathPrefix(`/api`, `/dashboard`)
       - traefik.http.routers.traefik.entrypoints=websecure
-      - traefik.http.routers.traefik.tls.certresolver=myresolver
       - traefik.http.routers.traefik.service=api@internal
       - traefik.http.routers.traefik.middlewares=traefik-auth
-      - traefik.http.middlewares.traefik-auth.basicauth.usersfile=/usersfile
+      - traefik.http.middlewares.traefik-auth.basicauth.usersfile=/run/secrets/traefik-usersfile
     ports:
       - 80:80
       - 443:443
+    environment:
+      - CF_DNS_API_TOKEN=/run/secrets/cf-dns-api-token
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./traefik.yaml:/etc/traefik/traefik.yaml
       - ./external:/external
-      - ./usersfile:/usersfile
       - traefik-letsencrypt:/letsencrypt
     extra_hosts:
       - host.docker.internal:host-gateway
@@ -33,13 +33,9 @@ services:
       - dockge:/app/data
       - ./stacks:/stacks
     environment:
-      # Tell Dockge where is your stacks directory
       - DOCKGE_STACKS_DIR=/stacks
     labels:
       - traefik.enable=true
-      - traefik.http.services.dockge.loadbalancer.server.port=5001
-      - traefik.http.routers.dockge.entrypoints=websecure
-      - traefik.http.routers.dockge.tls.certresolver=myresolver
       - traefik.http.routers.dockge.rule=Host(`dockge.minpeter.tech`)
 
   watchtower:
@@ -49,6 +45,13 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
     command: --interval 30
+
+secrets:
+  cf-dns-api-token:
+    file: ./secrets/cf-dns-api-token.secret
+  traefik-usersfile:
+    file: ./secrets/usersfile.secret
+  
 
 networks:
   default:
