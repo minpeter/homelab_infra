@@ -35,7 +35,7 @@ echo "WEBPASSWORD=<password>" > pihole/.env
 set traefik basic auth username and password
 
 ```
-echo "<username>:<htpassword>" >> traefik/usersfile
+echo "<username>:<htpassword>" >> secrets/usersfile
 ```
 
 5. cloudflare settings
@@ -45,35 +45,19 @@ A record: *.domain.com -> <server_ip>
 A record: domain.com -> <server_ip>
 
 SSL -> Full (strict)
-
-Page Rules
-  - *domain.com/.well-known/acme-challenge/* -> SSL, off
-  - *domain.com/* -> Always Use HTTPS
 ```
 
-6. run the setup script
+API token 발급
+
+그리고 secrets/cf-dns-api-token 파일에 토큰을 넣는다.
+
+6. server start up
 
 ```sh
-cd homelab_infra
-
-docker compose up -d
+docker-compose up -d
 ```
 
-7. check server status
-
-```sh
-docker-compose ps
-curl https://whoami.domain.com
-```
-
-```
-$ docker network create traefik
-$ docker compose up -d
-```
-
-```
-$ docker compose down
-```
+https://dockge.domain.com로 접속해서 필요한 서비스를 시작시킨다.
 
 ## Setting up HTTP services that are not inside HomeLab
 
