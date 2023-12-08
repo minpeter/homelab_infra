@@ -2,6 +2,8 @@
 
 This is a collection of scripts and configuration files that I use to manage my homelab infrastructure.
 
+(VPN power by tailsacle :)
+
 ## Starting a new server
 
 To start a new server, I use the following steps:
