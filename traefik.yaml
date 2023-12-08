@@ -7,8 +7,7 @@ certificatesResolvers:
       storage: /letsencrypt/acme.json
       dnsChallenge:
         provider: cloudflare
-        delayBeforeCheck: 60
-
+        delayBeforeCheck: "60"
 
 api:
   insecure: false
@@ -37,7 +36,12 @@ entryPoints:
         certResolver: letsencrypt
         domains:
           - main: minpeter.tech
-            sans: ["*.minpeter.tech", "*.dklodd.minpeter.tech", "*.ctf.minpeter.tech"]
+            sans:
+              [
+                "*.minpeter.tech",
+                "*.dklodd.minpeter.tech",
+                "*.ctf.minpeter.tech",
+              ]
           - main: tmpf.me
             sans: ["*.tmpf.me"]
     forwardedHeaders:
