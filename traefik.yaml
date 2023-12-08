@@ -1,5 +1,15 @@
 accessLog: {}
 
+certificatesResolvers:
+  letsencrypt:
+    acme:
+      email: kali2005611@gmail.com
+      storage: /letsencrypt/acme.json
+      dnsChallenge:
+        provider: cloudflare
+        delayBeforeCheck: 60
+
+
 api:
   insecure: false
   dashboard: true
@@ -27,7 +37,7 @@ entryPoints:
         certResolver: letsencrypt
         domains:
           - main: minpeter.tech
-            sans: ["*.minpeter.tech", "*.dklodd.minpeter.tech"]
+            sans: ["*.minpeter.tech", "*.dklodd.minpeter.tech", "*.ctf.minpeter.tech"]
           - main: tmpf.me
             sans: ["*.tmpf.me"]
     forwardedHeaders:
@@ -54,12 +64,3 @@ entryPoints:
         - 2405:8100::/32
         - 2a06:98c0::/29
         - 2c0f:f248::/32
-
-certificatesResolvers:
-  letsencrypt:
-    acme:
-      email: kali2005611@gmail.com
-      storage: /letsencrypt/acme.json
-      dnsChallenge:
-        provider: cloudflare
-        delayBeforeCheck: 60

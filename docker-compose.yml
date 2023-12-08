@@ -7,7 +7,6 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.traefik.rule=Host(`traefik.minpeter.tech`) && PathPrefix(`/api`, `/dashboard`)
-      - traefik.http.routers.traefik.entrypoints=websecure
       - traefik.http.routers.traefik.service=api@internal
       - traefik.http.routers.traefik.middlewares=traefik-auth
       - traefik.http.middlewares.traefik-auth.basicauth.usersfile=/run/secrets/traefik-usersfile
@@ -15,7 +14,7 @@ services:
       - 80:80
       - 443:443
     environment:
-      - CF_DNS_API_TOKEN=/run/secrets/cf-dns-api-token
+      - CF_DNS_API_TOKEN_FILE=/run/secrets/cf-dns-api-token
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./traefik.yaml:/etc/traefik/traefik.yaml
@@ -23,6 +22,9 @@ services:
       - traefik-letsencrypt:/letsencrypt
     extra_hosts:
       - host.docker.internal:host-gateway
+    secrets:
+      - cf-dns-api-token
+      - traefik-usersfile
 
   dockge:
     image: louislam/dockge
