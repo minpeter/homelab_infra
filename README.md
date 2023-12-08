@@ -35,7 +35,7 @@ echo "WEBPASSWORD=<password>" > pihole/.env
 set traefik basic auth username and password
 
 ```
-echo "<username>:<htpassword>" >> secrets/usersfile
+echo "<username>:<htpassword>" >> secrets/usersfile.secret
 ```
 
 5. cloudflare settings
@@ -52,7 +52,7 @@ API token 발급
 ![image](https://github.com/minpeter/homelab_infra/assets/62207008/03e39852-ca62-47fa-8098-10e98f824191)
 
 
-그리고 secrets/cf-dns-api-token 파일에 토큰을 넣는다.
+그리고 secrets/cf-dns-api-token.secret 파일에 토큰을 넣는다.
 
 6. server start up
 
