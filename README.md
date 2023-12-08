@@ -68,11 +68,9 @@ https://dockge.domain.com로 접속해서 필요한 서비스를 시작시킨다
 ```toml
 [http.routers]
   [http.routers.[service]]
-    entryPoints = ["websecure"]
     rule = "Host(`[service].minpeter.tech`)"
     service = "[service]-ext-srv"
     [http.routers.[service].tls]
-      certResolver = "myresolver"
 [[http.services.[service]-ext-srv.loadBalancer.servers]]
   url = "http://[service]:[port]"
 ```

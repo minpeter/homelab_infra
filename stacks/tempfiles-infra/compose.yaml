@@ -12,8 +12,6 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.tmp-backend.rule=Host(`api.tmpf.me`)
-      - traefik.http.services.tmp-backend.loadbalancer.server.port=5000
-      - traefik.http.routers.tmp-backend.entrypoints=websecure
     networks:
       - traefik
   new-frontend:
@@ -25,8 +23,6 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.tmp-frontend-new.rule=Host(`new.tmpf.me`)
-      - traefik.http.services.tmp-frontend-new.loadbalancer.server.port=80
-      - traefik.http.routers.tmp-frontend-new.entrypoints=websecure
     networks:
       - traefik
   dev-backend:
@@ -41,8 +37,6 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.tmp-backend-dev.rule=Host(`dev.tmpf.me`)
-      - traefik.http.services.tmp-backend-dev.loadbalancer.server.port=5000
-      - traefik.http.routers.tmp-backend-dev.entrypoints=websecure
     networks:
       - traefik
 networks:

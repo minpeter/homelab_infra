@@ -11,7 +11,6 @@ services:
       - traefik.http.routers.traefik.middlewares=traefik-auth
       - traefik.http.middlewares.traefik-auth.basicauth.usersfile=/run/secrets/traefik-usersfile
     ports:
-      - 80:80
       - 443:443
     environment:
       - CF_DNS_API_TOKEN_FILE=/run/secrets/cf-dns-api-token
@@ -53,7 +52,6 @@ secrets:
     file: ./secrets/cf-dns-api-token.secret
   traefik-usersfile:
     file: ./secrets/usersfile.secret
-  
 
 networks:
   default:
