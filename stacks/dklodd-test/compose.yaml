@@ -4,6 +4,7 @@ services:
     image: minpeter/dklodd:latest
     container_name: dklodd-test
     restart: unless-stopped
+    env_file: [.env]
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     labels:
@@ -11,6 +12,7 @@ services:
       - traefik.http.routers.sandbox-generator.rule=Host(`dklodd.minpeter.tech`)
     networks:
       - traefik
+    depends_on: []
 networks:
   traefik:
     external: true
