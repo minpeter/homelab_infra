@@ -12,6 +12,7 @@ services:
       - traefik.http.middlewares.traefik-auth.basicauth.usersfile=/run/secrets/traefik-usersfile
     ports:
       - 443:443
+      - 80:80
     environment:
       - CF_DNS_API_TOKEN_FILE=/run/secrets/cf-dns-api-token
     volumes:

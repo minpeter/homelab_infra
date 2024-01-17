@@ -5,7 +5,10 @@ services:
     restart: unless-stopped
     labels:
       - traefik.enable=true
-      - traefik.http.routers.nginx.rule=Host(`nginx.minpeter.tech`)
+      - traefik.http.routers.nginx.rule=Host(`nginx.minpeter.tech`,
+        `ctf.hansei.kr`)
+      - traefik.http.routers.nginx.tls.certresolver=http-resolver
+
     networks:
       - traefik
 networks:

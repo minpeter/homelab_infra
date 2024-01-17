@@ -1,6 +1,12 @@
 accessLog: {}
 
 certificatesResolvers:
+  http-resolver:
+    acme:
+      email: kali2005611@gmail.com
+      storage: /letsencrypt/http-resolver.json
+      httpChallenge:
+        entryPoint: web
   letsencrypt:
     acme:
       email: kali2005611@gmail.com
@@ -22,6 +28,13 @@ providers:
     watch: true
 
 entryPoints:
+  web:
+    address: :80
+    http:
+      redirections:
+        entryPoint:
+          to: websecure
+          scheme: https
   websecure:
     address: :443
     http:
@@ -61,3 +74,4 @@ entryPoints:
         - 2405:8100::/32
         - 2a06:98c0::/29
         - 2c0f:f248::/32
+          
