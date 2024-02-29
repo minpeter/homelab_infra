@@ -14,19 +14,13 @@ To start a new server, I use the following steps:
 curl https://get.docker.com | sh
 ```
 
-2. install docker-compose
-
-```sh
-sudo apt-get install docker-compose
-```
-
-3. clone this repo
+2. clone this repo
 
 ```sh
 git clone https://github.com/minpeter/homelab_infra.git
 ```
 
-4. config .env
+3. config .env
 
 web interface passwod change
 
@@ -40,7 +34,7 @@ set traefik basic auth username and password
 echo "<username>:<htpassword>" >> secrets/usersfile.secret
 ```
 
-5. cloudflare settings
+4. cloudflare settings
 
 ```
 A record: *.domain.com -> <server_ip>
@@ -56,7 +50,7 @@ API token 발급
 
 그리고 secrets/cf-dns-api-token.secret 파일에 토큰을 넣는다.
 
-6. server start up
+5. server start up
 
 ```sh
 docker-compose up -d
