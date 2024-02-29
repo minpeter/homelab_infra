@@ -47,6 +47,7 @@ entryPoints:
                 "*.minpeter.tech",
                 "*.dklodd.minpeter.tech",
                 "*.ctf.minpeter.tech",
+                "*.telos.minpeter.tech",
               ]
           - main: tmpf.me
             sans: ["*.tmpf.me"]

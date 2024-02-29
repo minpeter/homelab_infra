@@ -1,11 +1,13 @@
 version: "3.8"
 services:
-  nginx:
-    image: nginx:latest
+  lucid-api:
+    image: minpeter/lucid-backend:latest
     restart: unless-stopped
+    volumes:
+      - ./data.db:/data.db
     labels:
       - traefik.enable=true
-      - traefik.http.routers.nginx.rule=Host(`nginx.minpeter.tech`)
+      - traefik.http.routers.lucid.rule=Host(`lucid.minpeter.tech`)
     networks:
       - traefik
 networks:

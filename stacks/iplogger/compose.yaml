@@ -8,7 +8,11 @@ services:
       - iplogger-log:/log
     labels:
       - traefik.enable=true
-      - traefik.http.routers.iplogger.rule=Host(`ip.minpeter.tech`)
+      - traefik.http.routers.iplogger.rule=Host(`ip.minpeter.tech`, `ip.tmpf.me`)
+      # enable http router
+      - traefik.http.routers.iploggerhttp.rule=Host(`ip.minpeter.tech`, `ip.tmpf.me`)
+      - traefik.http.routers.iploggerhttp.entrypoints=web
+      - traefik.http.routers.iploggerhttp.priority=24
     networks:
       - traefik
 networks:

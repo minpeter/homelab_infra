@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  telos:
+    image: ghcr.io/minpeter/telos:main
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - OAUTH_REDIRECT_URL=https://ctf.hansei.kr
+      - GITHUB_CLIENT_ID=6fd5c75d47b6672c800e
+      - GITHUB_CLIENT_SECRET=94fd6cf08e163961ad4f3e357d995d405c9c77d7
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.hansei-ctf.rule=Host(`ctf.hansei.kr`)
+      - traefik.http.routers.hansei-ctf.tls.certresolver=http-resolver
+
+    networks:
+      - traefik
+networks:
+  traefik:
+    external: true
